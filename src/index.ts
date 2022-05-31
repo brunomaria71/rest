@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors";
 import { createWish, getWishes } from "./services/wishlist.service";
+import { config } from "dotenv";
+
+config();
 
 const app = express();
 app.use(express.json());
@@ -18,4 +21,7 @@ app.post("/", async (req, res) => {
 app.get("/", async (req, res) => {
   const wishes = await getWishes();
   res.send(wishes);
+});
+app.listen(3000, () => {
+  console.log("Listening on http://localhost:3000");
 });
